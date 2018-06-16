@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_activity_login">
 
+    <ImageView
+        android:id="@+id/activity_login_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="134dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/instagram_logo" />
+
     <EditText
         android:id="@+id/activity_login_et_email"
         android:layout_width="0dp"
@@ -43,18 +55,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_login_et_email" />
 
-    <ImageView
-        android:id="@+id/activity_login_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="134dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/instagram_logo" />
-
     <View
         android:id="@+id/activity_login_btn_login"
         android:layout_width="0dp"
@@ -87,7 +87,7 @@
         android:id="@+id/activity_login_guideline_1"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="56dp"
         android:background="#FCE4EC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,17 +104,16 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_login_guideline_1" />
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginStart="48dp"
+        android:textSize="18sp"
         android:textColor="@color/colorWhite50"
-        android:text="Sign up ?"
+        android:text="Don't have an account? Sing up"
+        android:gravity="center"
+        android:fontFamily="@font/roboto_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/activity_login_filed_down"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_login_filed_down"
-
-        />
+        app:layout_constraintBottom_toBottomOf="@+id/activity_login_filed_down" />
 
 </android.support.constraint.ConstraintLayout>
