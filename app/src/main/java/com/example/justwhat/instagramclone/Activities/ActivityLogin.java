@@ -1,14 +1,13 @@
 package com.example.justwhat.instagramclone.Activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.example.justwhat.instagramclone.Activities.MVPActivityLogIn.DataActivityLogIn;
+import com.example.justwhat.instagramclone.Activities.MVPActivityLogIn.ModelActivityLogIn;
+import com.example.justwhat.instagramclone.Activities.MVPActivityLogIn.PresenterActivityLogIn;
 import com.example.justwhat.instagramclone.R;
 
 import butterknife.BindView;
@@ -28,23 +27,43 @@ public class ActivityLogin extends AppCompatActivity {
     @BindView(R.id.activity_login_et_password)
     EditText editTextPassword;
 
+    private PresenterActivityLogIn presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         ButterKnife.bind(this);
+
+        DataActivityLogIn dataActivityLogIn = new DataActivityLogIn();
+        presenter = new PresenterActivityLogIn(dataActivityLogIn);
+        presenter.attachView(this);
+
         //for fragments
         //unbinder = ButterKnife.bind(this, view);
     }
 
-    /*@OnClick(R.id.activity_login_btn_login)
+    @OnClick(R.id.activity_login_btn_login)
     public void openActivitySignUp(){
 
-        *//*startActivity(new Intent(ActivityLogin.this, ActivitySignUp.class));*//*
+        presenter.add();
 
         Log.i(TAG, "Clicked");
 
-    }*/
+    }
+
+    public void completeLoaded(){
+
+        Log.i(TAG, "Loaded");
+
+    }
+
+    public ModelActivityLogIn getUserData(){
+        ModelActivityLogIn modelActivityLogIn = new ModelActivityLogIn();
+        modelActivityLogIn.setEmail(editTextEmail.getText().toString());
+        modelActivityLogIn.setPassword(editTextPassword.getText().toString());
+        return modelActivityLogIn;
+    }
 
     //for fragments
     /*@Override
@@ -52,4 +71,10 @@ public class ActivityLogin extends AppCompatActivity {
         super.onDestroyView();
         unbinder.unbind();
     }*/
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
+    }
 }
