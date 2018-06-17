@@ -27,13 +27,15 @@ public class DataActivityLogIn {
 
     public void checkUser(ContentValues contentValues, CompleteCallback completeCallback, FailCallback failCallback){
 
-        String password = contentValues.getAsString("password");
-        String email = contentValues.getAsString("email");
-
         auth = FirebaseAuth.getInstance();
+
+        String email = contentValues.getAsString("email");
+        String password = contentValues.getAsString("password");
+
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful()){
 
                     Log.i(TAG, "Complete");

@@ -1,5 +1,6 @@
 package com.example.justwhat.instagramclone.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,7 +47,14 @@ public class ActivityLogin extends AppCompatActivity {
     @OnClick(R.id.activity_login_btn_login)
     public void openActivitySignUp(){
 
-        presenter.add();
+        presenter.logIn();
+
+    }
+
+    @OnClick(R.id.activity_login_field_down)
+    public void openSignUpActivity(){
+
+        startActivity(new Intent(ActivityLogin.this, ActivitySignUp.class));
 
     }
 

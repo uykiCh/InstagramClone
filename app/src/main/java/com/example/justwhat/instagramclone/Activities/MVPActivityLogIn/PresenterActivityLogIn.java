@@ -30,7 +30,7 @@ public class PresenterActivityLogIn {
         this.model = model;
     }
 
-    public void add() {
+    public void logIn() {
         ModelActivityLogIn modelActivityLogIn = view.getUserData();
         Log.i(TAG, "email: " + modelActivityLogIn.getEmail() + "\npassword: " + modelActivityLogIn.getPassword());
 
