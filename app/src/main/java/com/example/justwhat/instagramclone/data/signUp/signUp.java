@@ -1,4 +1,4 @@
-package com.example.justwhat.instagramclone.Activities.MVPActivitySignUp;
+package com.example.justwhat.instagramclone.data.signUp;
 
 import android.content.ContentValues;
 import android.support.annotation.NonNull;
@@ -13,20 +13,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataActivitySignUp {
+public class signUp {
 
-    interface CompleteCallback {
+    public interface CompleteCallback {
         void onComplete();
     }
 
-    interface FailCallback{
+    public interface FailCallback {
         void onFail();
     }
 
     private FirebaseAuth auth;
     private FirebaseFirestore firebaseFirestore;
 
-    public void signUp(ContentValues contentValues, CompleteCallback completeCallback, FailCallback failCallback){
+    public void signUp(ContentValues contentValues, CompleteCallback completeCallback, FailCallback failCallback) {
 
         auth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -40,7 +40,7 @@ public class DataActivitySignUp {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if (task.isComplete()){
+                if (task.isComplete()) {
 
                     Map<String, Object> map = new HashMap<>();
                     map.put("username", userName);
@@ -52,13 +52,12 @@ public class DataActivitySignUp {
                         public void onComplete(@NonNull Task<DocumentReference> task) {
 
 
-
                         }
                     });
 
                     completeCallback.onComplete();
 
-                }else {
+                } else {
 
                     failCallback.onFail();
 

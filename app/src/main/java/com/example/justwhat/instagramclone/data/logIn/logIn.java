@@ -1,4 +1,4 @@
-package com.example.justwhat.instagramclone.Activities.MVPActivityLogIn;
+package com.example.justwhat.instagramclone.data.logIn;
 
 import android.content.ContentValues;
 import android.support.annotation.NonNull;
@@ -11,17 +11,17 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
-public class DataActivityLogIn {
+public class logIn {
 
-    interface CompleteCallback {
+    public interface CompleteCallback {
         void onComplete();
     }
 
-    interface FailCallback{
+    public interface FailCallback{
         void onFail();
     }
 
-    private static final String TAG = "DataActivityLogIn";
+    private static final String TAG = "logIn";
 
     private FirebaseAuth auth;
 
@@ -38,13 +38,11 @@ public class DataActivityLogIn {
 
                 if (task.isSuccessful()){
 
-                    Log.i(TAG, "Complete");
                     completeCallback.onComplete();
 
 
                 }else {
 
-                    Log.i(TAG, "Sorry");
                     failCallback.onFail();
 
                     Log.i(TAG, Objects.requireNonNull(task.getException()).getMessage());

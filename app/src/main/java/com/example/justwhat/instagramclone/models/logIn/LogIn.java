@@ -1,13 +1,13 @@
-package com.example.justwhat.instagramclone.Activities.MVPActivityLogIn;
+package com.example.justwhat.instagramclone.models.logIn;
 
-public class ModelActivityLogIn {
+public class LogIn {
 
     String email, password;
 
-    public ModelActivityLogIn() {
+    public LogIn() {
     }
 
-    public ModelActivityLogIn(String email, String password) {
+    public LogIn(String email, String password) {
         this.email = email;
         this.password = password;
     }

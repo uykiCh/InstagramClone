@@ -1,17 +1,17 @@
-package com.example.justwhat.instagramclone.Activities.MVPActivitySignUp;
+package com.example.justwhat.instagramclone.models.signUp;
 
-public class ModelActivitySignUp {
+public class SignUp {
 
     String email, password, fullName, username;
 
-    public ModelActivitySignUp(String email, String password, String fullName, String username) {
+    public SignUp(String email, String password, String fullName, String username) {
         this.email = email;
         this.password = password;
         this.fullName = fullName;
         this.username = username;
     }
 
-    public ModelActivitySignUp(){
+    public SignUp(){
 
     }
 
