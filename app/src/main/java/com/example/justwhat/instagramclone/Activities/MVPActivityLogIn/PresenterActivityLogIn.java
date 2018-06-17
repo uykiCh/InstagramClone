@@ -34,16 +34,23 @@ public class PresenterActivityLogIn {
         ModelActivityLogIn modelActivityLogIn = view.getUserData();
         Log.i(TAG, "email: " + modelActivityLogIn.getEmail() + "\npassword: " + modelActivityLogIn.getPassword());
 
-        if (TextUtils.isEmpty(modelActivityLogIn.getEmail()) || TextUtils.isEmpty(modelActivityLogIn.getPassword())) {
+        if (!(TextUtils.isEmpty(modelActivityLogIn.getEmail()) || TextUtils.isEmpty(modelActivityLogIn.getPassword()))) {
             ContentValues cv = new ContentValues(2);
             cv.put("password", modelActivityLogIn.getPassword());
             cv.put("email", modelActivityLogIn.getEmail());
-            model.checkUser(cv, new DataActivityLogIn.CompleteCallback() {
-                @Override
-                public void onComplete() {
-                    view.completeLoaded();
-                }
-            });
+            model.checkUser(cv,
+                    new DataActivityLogIn.CompleteCallback() {
+                        @Override
+                        public void onComplete() {
+                            view.completeLoaded();
+                        }
+                    },
+                    new DataActivityLogIn.FailCallback() {
+                        @Override
+                        public void onFail() {
+                            view.failLoaded();
+                        }
+                    });
         }
 
     }

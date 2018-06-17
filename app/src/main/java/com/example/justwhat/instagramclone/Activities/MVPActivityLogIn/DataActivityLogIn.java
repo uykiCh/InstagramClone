@@ -9,48 +9,48 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class DataActivityLogIn {
-
-    private static final String TAG = "DataActivityLogIn";
-
-    private FirebaseAuth auth;
-
-    public void checkUser(ContentValues contentValues, CompleteCallback completeCallback){
-
-        String password = contentValues.getAsString("password");
-        String email = contentValues.getAsString("email");
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isComplete()){
-
-                    Log.i(TAG, "Complete");
-                    
-
-                }else {
-
-                    Log.i(TAG, "Sorry");
-
-                }
-            }
-        });
-
-        auth = FirebaseAuth.getInstance();
-
-    }
 
     interface CompleteCallback {
         void onComplete();
     }
 
-    class checkFromFirebase{
+    interface FailCallback{
+        void onFail();
+    }
 
-        private final CompleteCallback callback;
+    private static final String TAG = "DataActivityLogIn";
+
+    private FirebaseAuth auth;
+
+    public void checkUser(ContentValues contentValues, CompleteCallback completeCallback, FailCallback failCallback){
+
+        String password = contentValues.getAsString("password");
+        String email = contentValues.getAsString("email");
+
+        auth = FirebaseAuth.getInstance();
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+
+                    Log.i(TAG, "Complete");
+                    completeCallback.onComplete();
 
 
-        checkFromFirebase(CompleteCallback callback) {
-            this.callback = callback;
-        }
+                }else {
+
+                    Log.i(TAG, "Sorry");
+                    failCallback.onFail();
+
+                    Log.i(TAG, Objects.requireNonNull(task.getException()).getMessage());
+
+                }
+            }
+        });
+
     }
 
 }

@@ -48,13 +48,17 @@ public class ActivityLogin extends AppCompatActivity {
 
         presenter.add();
 
-        Log.i(TAG, "Clicked");
-
     }
 
     public void completeLoaded(){
 
         Log.i(TAG, "Loaded");
+
+    }
+
+    public void failLoaded(){
+
+        Log.i(TAG, "Fail");
 
     }
 
